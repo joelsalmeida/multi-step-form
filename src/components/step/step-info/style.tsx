@@ -11,10 +11,13 @@ const StepInfoSubtitleStyled = styled.p`
   color: ${(props) => props.theme.neutral400};
 `;
 
-const StepInfoStyled = styled.li`
-  background-color: darkblue;
-  display: flex;
-  flex-direction: column;
+const StepInfoStyled = styled.div`
+  display: none;
+
+  @media (min-width: 768px) {
+    flex-direction: column;
+    display: flex;
+  }
 `;
 
 export { StepInfoStyled, StepInfoTitleStyled, StepInfoSubtitleStyled };
