@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
   
   body {
     font-family: 'Ubuntu', sans-serif;
-    background-color: hsl(0, 0%, 100%); // REMOVE THIS LINE BEFORE PUSH
+    background-color: hsl(231, 100%, 99%); // REMOVE THIS LINE BEFORE PUSH
     color: hsl(231, 11%, 63%);
     line-height: 2em;
   }
@@ -22,13 +22,17 @@ const GlobalStyle = createGlobalStyle`
 
   input {
     border: 1px solid hsl(229, 24%, 87%);
-    color: hsl(229, 24%, 87%);
+    color: hsl(213, 96%, 18%);
     padding: 0.5rem;
     border-radius: 4px;
     width: 100%;
 
     &::placeholder {
       color: hsl(229, 24%, 87%);
+    }
+
+    &:focus-visible {
+      outline-color: hsl(243, 100%, 62%);
     }
   }
 
