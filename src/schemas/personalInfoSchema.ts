@@ -8,4 +8,7 @@ const personalInfoSchema = z
   })
   .required();
 
+type PersonalInfoSchemaType = z.infer<typeof personalInfoSchema>;
+
 export { personalInfoSchema };
+export type { PersonalInfoSchemaType };
