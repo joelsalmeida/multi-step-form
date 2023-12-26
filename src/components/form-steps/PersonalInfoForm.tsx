@@ -1,12 +1,14 @@
-import React from "react";
 import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import style from "styled-components";
 
 import { HeaderStyled } from "../header/style";
 import { Label } from "../label";
-import { personalInfoSchema } from "../../schemas/personalInfoSchema";
+import {
+  personalInfoSchema,
+  PersonalInfoSchemaType,
+} from "../../schemas/personalInfoSchema";
 import { InputContainer } from "../input-container";
 import { setPersonalInfo } from "../../redux/slices/personal-info";
 
@@ -35,17 +37,15 @@ const PersonalInfoForm = () => {
     defaultValues: { name: "", phone: "", email: "" },
   });
 
-  const useSubmitPersonalData = (
-    event: React.SyntheticEvent<HTMLFormElement>,
-  ) => {
-    const dispatch = useDispatch();
-    event.preventDefault();
+  const dispatch = useDispatch();
+
+  const submitPersonalData: SubmitHandler<PersonalInfoSchemaType> = () => {
     const formData = getValues();
     dispatch(setPersonalInfo(formData));
   };
 
   return (
-    <InputContainer onSubmit={handleSubmit(() => useSubmitPersonalData)}>
+    <InputContainer onSubmit={handleSubmit(submitPersonalData)}>
       <HeaderStyled $size={2}>Personal Info</HeaderStyled>
       <p>Please provide your name, email address, and phone number.</p>
 
