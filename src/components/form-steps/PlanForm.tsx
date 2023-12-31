@@ -9,6 +9,7 @@ import { setPlan } from "../../redux/slices/plan";
 import { PlanCard } from "../plan-card";
 import { PlanType } from "../plan-card/types";
 import { Switch } from "../switch";
+import { ArcadePlan, AdvancedPlan, ProPlan } from "../../data/plans";
 
 import arcadeIcon from "/icon-arcade.svg";
 import advancedIcon from "/icon-advanced.svg";
@@ -23,12 +24,13 @@ const PlanForm = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(planSchema),
-    defaultValues: { plan: "arcade", planType: "anual" },
+    defaultValues: { plan: "arcade", planType: "annual" },
   });
 
   const [selectedPlan, selectedType] = watch(["plan", "planType"]);
 
   const dispatch = useDispatch();
+
   const submitPlan: SubmitHandler<PlanSchemaType> = () => {
     const formData = getValues();
     dispatch(setPlan(formData));
@@ -36,35 +38,35 @@ const PlanForm = () => {
 
   // TODO: REMOVE THIS LOG
   console.log("##### ERROS: ", errors);
-  const type = selectedType === "anual" ? PlanType.ANUAL : PlanType.MONTHLY;
+  const type = selectedType === "annual" ? PlanType.ANUAL : PlanType.MONTHLY;
 
   return (
-    <InputContainer onSubmit={handleSubmit(submitPlan)}>
+    <InputContainer id="plan" onSubmit={handleSubmit(submitPlan)}>
       <HeaderStyled $size={2}>Select your plan</HeaderStyled>
       <p>You have the option of monthly or yearly billing.</p>
 
       <PlanCard
-        plan="Arcade"
+        plan={ArcadePlan.name}
         planType={type}
-        planPrice={{ monthly: 9, annual: 90 }}
+        planPrice={ArcadePlan.price}
         icon={arcadeIcon}
         active={selectedPlan === "arcade"}
         registerInput={register as UseFormRegister<PlanSchemaType>}
       />
 
       <PlanCard
-        plan="Advanced"
+        plan={AdvancedPlan.name}
         planType={type}
-        planPrice={{ monthly: 12, annual: 120 }}
+        planPrice={AdvancedPlan.price}
         icon={advancedIcon}
         active={selectedPlan === "advanced"}
         registerInput={register as UseFormRegister<PlanSchemaType>}
       />
 
       <PlanCard
-        plan="Pro"
+        plan={ProPlan.name}
         planType={type}
-        planPrice={{ monthly: 15, annual: 150 }}
+        planPrice={ProPlan.price}
         icon={proIcon}
         active={selectedPlan === "pro"}
         registerInput={register as UseFormRegister<PlanSchemaType>}
