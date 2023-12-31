@@ -11,6 +11,7 @@ import {
 } from "../../schemas/personalInfoSchema";
 import { InputContainer } from "../input-container";
 import { setPersonalInfo } from "../../redux/slices/personal-info";
+import { setCurrentStep } from "../../redux/slices/steps";
 
 const ErrorMessageStyled = style.span`
   color: ${(props) => props.theme.error500};
@@ -42,10 +43,14 @@ const PersonalInfoForm = () => {
   const submitPersonalData: SubmitHandler<PersonalInfoSchemaType> = () => {
     const formData = getValues();
     dispatch(setPersonalInfo(formData));
+    dispatch(setCurrentStep({ currentStep: 1 }));
   };
 
   return (
-    <InputContainer onSubmit={handleSubmit(submitPersonalData)}>
+    <InputContainer
+      id="personalInfo"
+      onSubmit={handleSubmit(submitPersonalData)}
+    >
       <HeaderStyled $size={2}>Personal Info</HeaderStyled>
       <p>Please provide your name, email address, and phone number.</p>
 
@@ -100,8 +105,6 @@ const PersonalInfoForm = () => {
           placeholder="e.g. stephenking@lorem.com"
         />
       </Label>
-
-      <button type="submit">SUBMIT :)</button>
     </InputContainer>
   );
 };
