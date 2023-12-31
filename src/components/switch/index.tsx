@@ -12,7 +12,7 @@ const Switch = ({ registerInput }: SwitchProps) => {
       <SwitchContainerStyled>
         <SwitchInputStyled
           type="checkbox"
-          value="anual"
+          value="annual"
           {...registerInput("planType")}
         />
       </SwitchContainerStyled>
