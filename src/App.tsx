@@ -11,6 +11,7 @@ import { PersonalInfoForm } from "./components/form-steps/PersonalInfoForm";
 import { PlanForm } from "./components/form-steps/PlanForm";
 import { RootStateType } from "./redux/store";
 import { setCurrentStep } from "./redux/slices/steps";
+import { ServiceForm } from "./components/form-steps/ServiceForm";
 
 const Base = style.div`
   inset: 0;
@@ -18,8 +19,8 @@ const Base = style.div`
 `;
 
 function App() {
-  const steps = [<PersonalInfoForm />, <PlanForm />];
-  const stepIds = ["personalInfo", "plan"];
+  const steps = [<PersonalInfoForm />, <PlanForm />, <ServiceForm />];
+  const stepIds = ["personalInfo", "plan", "services"];
 
   const currentStep = useSelector(
     (state: RootStateType) => state.steps.currentStep,
