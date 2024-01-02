@@ -10,10 +10,16 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body {
+
     font-family: 'Ubuntu', sans-serif;
     background-color: hsl(231, 100%, 99%); // REMOVE THIS LINE BEFORE PUSH
     color: hsl(231, 11%, 63%);
     line-height: 2em;
+    font-size: 14px;
+    
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
   }
   
   button {
@@ -34,6 +40,17 @@ const GlobalStyle = createGlobalStyle`
     &:focus-visible {
       outline-color: hsl(243, 100%, 62%);
     }
+    
+    &:invalid {
+      outline-color: hsl(354, 84%, 57%);
+      border: 5px solid red;
+    }
+  }
+
+  input[type="checkbox"] {
+    accent-color: hsl(243, 100%, 62%);
+    width: 1rem;
+    height: 1rem;
   }
 
   p {
