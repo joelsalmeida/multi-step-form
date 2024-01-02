@@ -11,10 +11,12 @@ import { PlanCard } from "../plan-card";
 import { PlanType } from "../plan-card/types";
 import { Switch } from "../switch";
 import { ArcadePlan, AdvancedPlan, ProPlan } from "../../data/plans";
+import { setCurrentStep } from "../../redux/slices/steps";
 
 import arcadeIcon from "/icon-arcade.svg";
 import advancedIcon from "/icon-advanced.svg";
 import proIcon from "/icon-pro.svg";
+import { HeaderContainer } from "./styles";
 
 const PlanForm = () => {
   const {
@@ -35,6 +37,7 @@ const PlanForm = () => {
   const submitPlan: SubmitHandler<PlanSchemaType> = () => {
     const formData = getValues();
     dispatch(setPlan(formData));
+    dispatch(setCurrentStep({ currentStep: 2 }));
   };
 
   // TODO: REMOVE THIS LOG
@@ -50,8 +53,10 @@ const PlanForm = () => {
 
   return (
     <InputContainer id="plan" onSubmit={handleSubmit(submitPlan)}>
-      <HeaderStyled $size={2}>Select your plan</HeaderStyled>
-      <p>You have the option of monthly or yearly billing.</p>
+      <HeaderContainer>
+        <HeaderStyled $size={2}>Select your plan</HeaderStyled>
+        <p>You have the option of monthly or yearly billing.</p>
+      </HeaderContainer>
 
       <PlanCardContainer>
         <PlanCard
