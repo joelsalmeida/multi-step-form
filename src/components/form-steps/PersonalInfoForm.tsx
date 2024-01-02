@@ -12,6 +12,7 @@ import {
 import { InputContainer } from "../input-container";
 import { setPersonalInfo } from "../../redux/slices/personal-info";
 import { setCurrentStep } from "../../redux/slices/steps";
+import { HeaderContainer } from "./styles";
 
 const ErrorMessageStyled = style.span`
   color: ${(props) => props.theme.error500};
@@ -51,8 +52,10 @@ const PersonalInfoForm = () => {
       id="personalInfo"
       onSubmit={handleSubmit(submitPersonalData)}
     >
-      <HeaderStyled $size={2}>Personal Info</HeaderStyled>
-      <p>Please provide your name, email address, and phone number.</p>
+      <HeaderContainer>
+        <HeaderStyled $size={2}>Personal Info</HeaderStyled>
+        <p>Please provide your name, email address, and phone number.</p>
+      </HeaderContainer>
 
       <Label htmlFor="name">
         <LabelContainerStyled>
